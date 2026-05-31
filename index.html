@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Malaysian Commute: Wealth, Wheels, and the Public Transit Divide</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       MASTHEAD
+  ══════════════════════════════════════════ -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="masthead-eyebrow">Interactive Data Report · 2026</div>
+      <h1 class="masthead-title">
+        The Malaysian Commute:<br>
+        <em>Wealth, Wheels,</em> and the<br>
+        Public Transit Divide
+      </h1>
+      <p class="masthead-sub">
+        An interactive breakdown of how household economics and vehicle ownership shape the way Malaysia moves, from highways to transit rails.
+      </p>
+      <div class="masthead-rule"></div>
+      <p class="masthead-intro">
+        Economic foundations govern daily regional transit. Wealth distributions and structural housing 
+        patterns across states directly influence how infrastructure must serve commuters.
+      </p>
+    </div>
+    <div class="masthead-stripe" aria-hidden="true"></div>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 1 — THE ECONOMIC BASELINE
+  ══════════════════════════════════════════ -->
+  <section class="dashboard-section section-economic" id="section-economic">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <div class="section-header-text">
+        <h2 class="section-title">The Economic Baseline</h2>
+        <p class="section-narrative">
+          High household incomes and tight living quarters dictate development. This section 
+          tracks baseline financial parameters alongside geographic density factors.
+        </p>
+      </div>
+    </div>
+
+    <!-- Chart row: choropleth + dumbbell -->
+    <div class="chart-row chart-row--asymmetric">
+
+      <div class="chart-card chart-card--wide">
+        <div class="chart-label">Geographic Income Distribution</div>
+        <div id="chart1" class="chart-embed" style="min-height:520px;"></div>
+        <p class="chart-annotation">
+          This geographic distribution maps out how state-wide wealth densities line up with local structural constraints.
+        </p>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-label">Mean vs. Median Income Gap</div>
+        <div id="chart2" class="chart-embed" style="min-height:480px;"></div>
+        <p class="chart-annotation">
+          The gap between mean and median markers reveals systemic internal wealth skews within major financial territories.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 2 — THE CAR-CENTRIC REALITY
+  ══════════════════════════════════════════ -->
+  <section class="dashboard-section section-cars" id="section-cars">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <div class="section-header-text">
+        <h2 class="section-title">The Car-Centric Reality</h2>
+        <p class="section-narrative">
+          Post-independence regional growth heavily prioritized motorways over train corridors. We explore 
+          Malaysia's massive operational reliance on private vehicles and evaluate how long term fuel 
+          allocations are shifting.
+        </p>
+      </div>
+    </div>
+
+    <div class="chart-row chart-row--stacked">
+
+      <div class="chart-card chart-card--full">
+        <div class="chart-label">Vehicle Registrations by Category</div>
+        <div class="chart-with-aside">
+          <div class="chart-scroll-wrapper chart-with-aside__viz">
+            <div id="chart3" class="chart-embed" style="min-height:420px;"></div>
+          </div>
+          <p class="chart-annotation chart-with-aside__note">
+            Interactive selection lets you filter vehicle categories. Private cars and motorcycles represent an overwhelming majority.
+          </p>
+        </div>
+      </div>
+
+      <div class="chart-card chart-card--full">
+        <div class="chart-label">Fuel Type Composition Over Time</div>
+        <div class="chart-with-aside">
+          <div class="chart-scroll-wrapper chart-with-aside__viz">
+            <div id="chart4" class="chart-embed" style="min-height:420px;"></div>
+          </div>
+          <p class="chart-annotation chart-with-aside__note">
+            A normalized overview highlights traditional combustion lock in, tracking the early horizons of alternative powertrains.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 3 — THE TRANSIT PIVOT
+  ══════════════════════════════════════════ -->
+  <section class="dashboard-section section-transit" id="section-transit">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <div class="section-header-text">
+        <h2 class="section-title">The Transit Pivot</h2>
+        <p class="section-narrative">
+          Public transit lines serve as critical spatial circulatory systems. This 
+          segment maps recovery curves, structural performance profiles, weekly usage 
+          variations, and directional passenger matrices.
+        </p>
+      </div>
+    </div>
+
+    <!-- Streamgraph — full width -->
+    <div class="chart-row">
+      <div class="chart-card chart-card--full">
+        <div class="chart-label">Ridership Recovery Streamgraph</div>
+        <div class="chart-with-aside">
+          <div class="chart-scroll-wrapper chart-with-aside__viz">
+            <div id="chart5" class="chart-embed" style="min-height:420px;"></div>
+          </div>
+          <p class="chart-annotation chart-with-aside__note">
+            Trace post pandemic volume returns running fluidly across individual commuter rail grids.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parallel coords + heatmap + bridge -->
+    <div class="chart-row chart-row--equal chart-row--stretch">
+
+      <div class="chart-card">
+        <div class="chart-label">Transit Performance — Parallel Coordinates</div>
+        <div id="chart6" class="chart-embed" style="min-height:400px;"></div>
+        <p class="chart-annotation">
+          Multi-axis mapping links performance behaviors, showing how speed benchmarks diverge from bus networks to rail lines.
+        </p>
+      </div>
+
+      <div class="chart-col2">
+        <div class="chart-card">
+          <div class="chart-label">Daily Ridership Pulse Heatmap</div>
+          <div class="chart-with-aside">
+            <div class="chart-scroll-wrapper chart-with-aside__viz">
+              <div id="chart7" class="chart-embed" style="min-height:340px;"></div>
+            </div>
+            <p class="chart-annotation chart-with-aside__note">
+              The multi-month structural pulse details heavy weekday system usage cycles against lighter weekend intervals.
+            </p>
+          </div>
+        </div>
+
+        <div class="chart-card narrative-card">
+          <div class="narrative-bridge">
+            <div class="narrative-bridge__rule"></div>
+            <div class="narrative-bridge__body">
+              <h3 class="narrative-bridge__heading">Malaysia's Transit Network at a Glance</h3>
+              <p class="narrative-bridge__text">
+                Malaysia's public transit pivot is still unfolding. Rail ridership has recovered strongly from pandemic lows, but the network's reach remains concentrated in Greater Kuala Lumpur, leaving commuters in outer states heavily dependent on private vehicles. LRT and MRT lines lead in volume and growth velocity, while bus networks serve as the connective tissue binding areas that rail has yet to reach. Understanding how these systems perform, where passengers move, and when they travel is essential to mapping the equity gaps that remain.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BRT + Bubble matrix side by side -->
+    <div class="chart-row chart-row--equal">
+
+      <div class="chart-card">
+        <div class="chart-label">Sunway BRT Origin-Destination Matrix</div>
+        <div class="chart-scroll-wrapper">
+          <div id="chart8" class="chart-embed" style="min-height:520px;"></div>
+        </div>
+        <p class="chart-annotation">
+          Isolate regional travel routes across the Sunway BRT matrix using cross-highlighting selections.
+        </p>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-label">RapidRail Passenger Flow — Bubble Matrix</div>
+        <div class="chart-scroll-wrapper">
+          <div id="chart9" class="chart-embed" style="min-height:560px;"></div>
+        </div>
+        <p class="chart-annotation">
+          Dual-encoded point scales display the highest-volume interchange terminals across the rapid rail layout.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Weekly ridership line -->
+    <div class="chart-row">
+      <div class="chart-card chart-card--full">
+        <div class="chart-label">Weekly Ridership Patterns</div>
+        <div class="chart-with-aside">
+          <div class="chart-scroll-wrapper chart-with-aside__viz">
+            <div id="chart10" class="chart-embed" style="min-height:360px;"></div>
+          </div>
+          <p class="chart-annotation chart-with-aside__note">
+            Geometric lines draw out sharp drop-offs, contrasting essential industrial travel with open weekend patterns.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CONCLUSION
+  ══════════════════════════════════════════ -->
+  <section class="conclusion-section">
+    <div class="conclusion-inner">
+      <div class="conclusion-rule"></div>
+      <h2 class="conclusion-title">Looking Forward</h2>
+      <p class="conclusion-body">
+        Resolving transit disparity involves bridging private transport hubs with high capacity 
+        rail infrastructure. Long term spatial equity relies on cohesive connectivity.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-credit">Created by Loh Xiao Ying &middot; ID: 36296198</p>
+      <div class="footer-divider"></div>
+      <p class="footer-sources-title">Data Sources &amp; Citations</p>
+      <ol class="footer-sources">
+        <li>Government of Malaysia. (n.d.). Data catalogue. <em>Data.gov.my.</em> Retrieved May 31, 2026, from <a href="https://data.gov.my/data-catalogue" target="_blank" rel="noopener">https://data.gov.my/data-catalogue</a></li>
+        <li>Prasarana Malaysia Berhad. (n.d.). Prasarana's ridership: Ridership archive. <em>Rapid KL.</em> Retrieved May 31, 2026, from <a href="https://myrapid.com.my/bus-train/ridership-archive/" target="_blank" rel="noopener">https://myrapid.com.my/bus-train/ridership-archive/</a></li>
+      </ol>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════
+       CHART MOUNTING
+  ══════════════════════════════════════════ -->
+  <script>
+    const embedOpts = {
+      renderer: 'svg',
+      actions: { export: true, source: false, compiled: false, editor: false }
+    };
+
+    vegaEmbed('#chart1',  'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/1_income_choropleth.vg.js',        embedOpts).catch(console.error);
+    vegaEmbed('#chart2',  'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/2_state_income_dumbbell.vg.js',    embedOpts).catch(console.error);
+    vegaEmbed('#chart3',  'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/3_vehicle_registration_bar.vg.js', embedOpts).catch(console.error);
+    vegaEmbed('#chart4',  'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/4_car_fuel_type_area.vg.js',       embedOpts).catch(console.error);
+    vegaEmbed('#chart5',  'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/5_ridership_streamgraph.vg.js',    embedOpts).catch(console.error);
+    vegaEmbed('#chart6',  'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/6_rail_vs_bus_cordinate.vg.js',    embedOpts).catch(console.error);
+    vegaEmbed('#chart7',  'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/7_daily_transit_heatmap.vg.js',    embedOpts).catch(console.error);
+    vegaEmbed('#chart8',  'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/8_brt_matrix_heatmap.vg.js',       embedOpts).catch(console.error);
+    vegaEmbed('#chart9',  'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/9_bubble_matrix.vg.js',            embedOpts).catch(console.error);
+    vegaEmbed('#chart10', 'https://raw.githubusercontent.com//xloh0003-a11y/2179/main/vegalite/10_weekly_ridership_line.vg.js',   embedOpts).catch(console.error);
+  </script>
+
+</body>
+</html>
