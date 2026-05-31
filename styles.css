@@ -1,0 +1,601 @@
+/* ═══════════════════════════════════════════════════════════
+   THE MALAYSIAN COMMUTE DASHBOARD
+   styles.css — Production-grade, editorial data-journalism
+═══════════════════════════════════════════════════════════ */
+
+/* ── Tokens ────────────────────────────────────────────── */
+:root {
+  /* Brand palette — blue × burnt orange, CB-accessible */
+  --blue-deep:      #1e3a8a;
+  --blue-mid:       #1a56db;
+  --blue-light:     #dbeafe;
+  --orange-vivid:   #f97316;
+  --orange-deep:    #9d3a10;
+  --orange-muted:   #fed7aa;
+
+  /* Neutrals */
+  --bg-page:        #fafaf8;
+  --bg-section-alt: #f4f2ee;
+  --bg-card:        #ffffff;
+  --rule-light:     #e5e0d8;
+  --rule-heavy:     #c9c2b5;
+  --ink-primary:    #1a1714;
+  --ink-secondary:  #4a4540;
+  --ink-muted:      #7c746a;
+  --ink-annotation: #5a5248;
+
+  /* Serif — display */
+  --font-serif:  'Playfair Display', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  /* Sans — body, labels, UI */
+  --font-sans:   'system-ui', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  /* Spacing */
+  --pad-section: 4rem 2.5rem;
+  --pad-card:    1.75rem;
+  --gap-row:     2rem;
+  --gap-col:     1.75rem;
+  --max-prose:   65ch;
+  --max-page:    1440px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(30,20,10,.07), 0 4px 16px rgba(30,20,10,.06);
+  --shadow-hover:0 2px 8px rgba(30,20,10,.10), 0 8px 32px rgba(30,20,10,.10);
+}
+
+/* ── Reset & Base ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-page);
+  color: var(--ink-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typographic scale ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  line-height: 1.15;
+  color: var(--ink-primary);
+}
+
+p, li, figcaption { max-width: var(--max-prose); }
+
+a {
+  color: var(--blue-mid);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+a:hover { color: var(--orange-deep); }
+
+/* ═══════════════════════════════════════════════════════
+   MASTHEAD
+═══════════════════════════════════════════════════════ */
+.masthead {
+  position: relative;
+  background: var(--blue-deep);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Diagonal texture overlay */
+.masthead::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      -55deg,
+      rgba(255,255,255,.025) 0px,
+      rgba(255,255,255,.025) 1px,
+      transparent 1px,
+      transparent 36px
+    );
+  pointer-events: none;
+}
+
+/* Orange accent stripe at bottom */
+.masthead-stripe {
+  height: 6px;
+  background: linear-gradient(90deg, var(--orange-vivid) 0%, var(--orange-deep) 100%);
+}
+
+.masthead-inner {
+  position: relative;
+  max-width: var(--max-page);
+  margin: 0 auto;
+  padding: 5rem 2.5rem 3.5rem;
+}
+
+.masthead-eyebrow {
+  font-family: var(--font-sans);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--orange-muted);
+  margin-bottom: 1.25rem;
+}
+
+.masthead-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  max-width: 22ch;
+  margin-bottom: 1.5rem;
+}
+
+.masthead-title em {
+  font-style: italic;
+  color: var(--orange-muted);
+}
+
+.masthead-sub {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.8);
+  max-width: var(--max-prose);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.masthead-rule {
+  width: 56px;
+  height: 3px;
+  background: var(--orange-vivid);
+  margin-bottom: 1.5rem;
+  border-radius: 2px;
+}
+
+.masthead-intro {
+  font-family: var(--font-sans);
+  font-size: .95rem;
+  color: rgba(255,255,255,.65);
+  max-width: var(--max-prose);
+  line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION LAYOUT
+═══════════════════════════════════════════════════════ */
+.dashboard-section {
+  max-width: var(--max-page);
+  margin: 0 auto;
+  padding: var(--pad-section);
+  border-bottom: 1px solid var(--rule-light);
+}
+
+/* Alternating section backgrounds */
+.section-cars { background: var(--bg-section-alt); max-width: 100%; }
+.section-cars > * { max-width: var(--max-page); margin-left: auto; margin-right: auto; }
+
+.section-transit { background: var(--bg-page); }
+
+/* ── Section Header ─────────────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rule-heavy);
+}
+
+.section-number {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--blue-light);
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: -.25rem;
+  /* styled as a large decorative numeral */
+  -webkit-text-stroke: 2px var(--blue-mid);
+  color: transparent;
+  user-select: none;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-bottom: .6rem;
+}
+
+.section-narrative {
+  font-family: var(--font-sans);
+  font-size: .95rem;
+  color: var(--ink-secondary);
+  max-width: var(--max-prose);
+  line-height: 1.75;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CHART ROWS (grid layouts)
+═══════════════════════════════════════════════════════ */
+.chart-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-row);
+  align-items: flex-start;
+  margin-bottom: var(--gap-row);
+}
+
+/* Equal-width 2-col */
+.chart-row--equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-row);
+}
+
+/* Equal-height matrix cards — BRT + Bubble */
+.chart-row--equal {
+  align-items: stretch;
+}
+
+.chart-row--equal > .chart-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-row--equal > .chart-card .chart-scroll-wrapper {
+  flex: 1;
+}
+
+/* Main chart large, secondary narrow: ~60/40 */
+.chart-row--asymmetric {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: var(--gap-col);
+}
+
+/* Reversed asymmetric: narrow left, wide right */
+.chart-row--asymmetric-reverse {
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+  gap: var(--gap-col);
+}
+
+/* Full-width single chart */
+.chart-row--stacked {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-row);
+}
+
+/* ═══════════════════════════════════════════════════════
+   CHART CARDS
+═══════════════════════════════════════════════════════ */
+.chart-card {
+  background: var(--bg-card);
+  border-radius: 10px;
+  border: 1px solid var(--rule-light);
+  box-shadow: var(--shadow-card);
+  padding: var(--pad-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow .2s ease;
+  min-width: 0; /* prevent grid blowout */
+}
+
+.chart-card:hover { box-shadow: var(--shadow-hover); }
+
+.chart-card--full {
+  width: 100%;
+}
+
+.chart-card--wide {
+  /* inherits from grid column sizing */
+}
+
+/* ── Chart label ─────────────────────────────────────── */
+.chart-label {
+  font-family: var(--font-sans);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--orange-vivid);
+  width: fit-content;
+}
+
+/* ── Chart embed wrapper ─────────────────────────────── */
+.chart-embed {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Restrict inner vega canvases to not overflow */
+.chart-embed > div,
+.chart-embed canvas,
+.chart-embed svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* scrollable inner wrapper for wide charts */
+.chart-scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 4px;
+  /* subtle inset shadow to hint scrollability */
+}
+.chart-scroll-wrapper::-webkit-scrollbar { height: 6px; }
+.chart-scroll-wrapper::-webkit-scrollbar-track { background: var(--bg-section-alt); }
+.chart-scroll-wrapper::-webkit-scrollbar-thumb { background: var(--rule-heavy); border-radius: 3px; }
+
+/* ── Chart annotation ────────────────────────────────── */
+.chart-annotation {
+  font-family: var(--font-sans);
+  font-size: .835rem;
+  color: var(--ink-annotation);
+  line-height: 1.7;
+  max-width: var(--max-prose);
+  border-left: 3px solid var(--orange-muted);
+  padding-left: .85rem;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONCLUSION
+═══════════════════════════════════════════════════════ */
+.conclusion-section {
+  background: var(--blue-deep);
+  color: #fff;
+}
+
+.conclusion-inner {
+  max-width: var(--max-page);
+  margin: 0 auto;
+  padding: 4rem 2.5rem;
+}
+
+.conclusion-rule {
+  width: 48px;
+  height: 4px;
+  background: var(--orange-vivid);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+.conclusion-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.conclusion-body {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.78);
+  max-width: var(--max-prose);
+  line-height: 1.85;
+}
+
+/* ═══════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════ */
+.site-footer {
+  background: var(--ink-primary);
+  border-top: 4px solid var(--orange-deep);
+}
+
+.footer-inner {
+  max-width: var(--max-page);
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+}
+
+.footer-credit {
+  font-family: var(--font-sans);
+  font-size: .8rem;
+  color: rgba(255,255,255,.55);
+  letter-spacing: .04em;
+  margin-bottom: 1.25rem;
+  max-width: none;
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255,255,255,.12);
+  margin-bottom: 1.25rem;
+}
+
+.footer-sources-title {
+  font-family: var(--font-sans);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--orange-muted);
+  margin-bottom: .75rem;
+  max-width: none;
+}
+
+.footer-sources {
+  list-style: decimal;
+  padding-left: 1.25em;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.footer-sources li {
+  font-family: var(--font-sans);
+  font-size: .78rem;
+  color: rgba(255,255,255,.45);
+  line-height: 1.65;
+  max-width: 80ch;
+}
+
+.footer-sources li em { font-style: italic; }
+
+.footer-sources a {
+  color: rgba(255,255,255,.4);
+  word-break: break-all;
+}
+.footer-sources a:hover { color: var(--orange-muted); }
+
+/* ═══════════════════════════════════════════════════════
+   VEGAEMBED UI OVERRIDES
+═══════════════════════════════════════════════════════ */
+/* Move the vega-embed action menu button to a neutral style */
+.vega-embed .vega-actions-wrapper .vega-actions a {
+  font-family: var(--font-sans);
+  font-size: .75rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════════════════════ */
+
+/* Large tablets and below */
+@media (max-width: 1100px) {
+  .chart-row--asymmetric,
+  .chart-row--asymmetric-reverse,
+  .chart-row--equal {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card--wide { width: 100%; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  :root {
+    --pad-section: 2.5rem 1.25rem;
+    --pad-card:    1.25rem;
+    --gap-row:     1.25rem;
+  }
+
+  .masthead-inner { padding: 3rem 1.25rem 2.5rem; }
+  .masthead-title { font-size: 2rem; }
+
+  .section-header {
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  .section-number { font-size: 2rem; }
+
+  .conclusion-inner { padding: 3rem 1.25rem; }
+  .footer-inner { padding: 2rem 1.25rem; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   CHART WITH ASIDE — chart left, annotation right
+═══════════════════════════════════════════════════════ */
+.chart-with-aside {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.chart-with-aside__viz {
+  min-width: 0;
+}
+
+.chart-with-aside__note {
+  /* vertically center beside chart */
+  margin-top: 1rem;
+  position: sticky;
+  top: 1.5rem;
+  /* override the max-width set on p globally */
+  max-width: 100%;
+}
+
+/* Collapse to stacked on narrow screens */
+@media (max-width: 900px) {
+  .chart-with-aside {
+    grid-template-columns: 1fr;
+  }
+  .chart-with-aside__note {
+    position: static;
+    margin-top: 0;
+  }
+}
+
+/* ── Column-2 sub-stack (heatmap + narrative stacked in col 2) ── */
+.chart-row--stretch {
+  align-items: stretch;
+}
+
+.chart-col2 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-col);
+  min-width: 0;
+  flex: 1;
+}
+
+/* Heatmap card: 70%, narrative card: 30% */
+.chart-col2 > .chart-card:first-child {
+  flex: 7;
+}
+
+.narrative-card {
+  flex: 3;
+}
+
+@media (max-width: 1100px) {
+  .chart-col2 {
+    /* already collapses via chart-row--equal responsive rule */
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   NARRATIVE BRIDGE — inside its own card
+═══════════════════════════════════════════════════════ */
+.narrative-bridge {
+  display: grid;
+  grid-template-columns: 4px 1fr;
+  gap: 0 1.5rem;
+  align-items: start;
+}
+
+.narrative-bridge__rule {
+  width: 4px;
+  background: linear-gradient(180deg, var(--orange-vivid) 0%, var(--orange-deep) 100%);
+  border-radius: 2px;
+  align-self: stretch;
+  min-height: 100%;
+}
+
+.narrative-bridge__heading {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink-primary);
+  margin-bottom: .6rem;
+}
+
+.narrative-bridge__text {
+  font-family: var(--font-sans);
+  font-size: .9rem;
+  color: var(--ink-secondary);
+  line-height: 1.8;
+  max-width: 80ch;
+}
+
+.narrative-bridge__text em {
+  font-style: italic;
+  color: var(--ink-primary);
+}
+
+/* ── Print ───────────────────────────────────────────── */
+@media print {
+  .masthead-stripe, .site-footer { display: none; }
+  .dashboard-section { break-inside: avoid; }
+}
