@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "RapidRail 2026 — Origin-to-Destination Passenger Flow Bubble Matrix (Top 10 × Top 10 stations)",
   "width": 520,
-  "height": 520,
+  "height": 540,
   "data": {
     "values": [
       {"origin": "KG18: Bukit Bintang",       "destination": "KG18: Bukit Bintang",       "ridership": 153108},
